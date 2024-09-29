@@ -1,26 +1,41 @@
-import { Route, Routes, NavLink } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Diary from "./pages/Diary";
 import Home from "./pages/Home";
 import New from "./pages/New";
 import NotFound from "./pages/NotFound";
-import getEmotionImg from "./util/get-emotion-img";
+import Button from "./components/Button";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
-      <div>
-        <img src={getEmotionImg(1)} />
-        <img src={getEmotionImg(2)} />
-        <img src={getEmotionImg(3)} />
-        <img src={getEmotionImg(4)} />
-        <img src={getEmotionImg(5)} />
-      </div>
-      <div>
-        <NavLink to={"/"}>Home</NavLink>
-        <NavLink to={"/diary"}>Diary</NavLink>
-        <NavLink to={"/add-diary"}>Add</NavLink>
-      </div>
+      <Header
+        title={"My Diary"}
+        leftChild={<Button text={"left"} />}
+        rightChild={<Button text={"right"} />}
+      />
+      <Button
+        text={"1234"}
+        type={"GOOD"}
+        onClick={() => {
+          console.log("click");
+        }}
+      />
+      <Button
+        text={"1234"}
+        type={"SOSO"}
+        onClick={() => {
+          console.log("click");
+        }}
+      />
+      <Button
+        text={"1234"}
+        type={"BAD"}
+        onClick={() => {
+          console.log("click");
+        }}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/diary/:id" element={<Diary />} />
