@@ -10,15 +10,27 @@ import NotFound from "./pages/NotFound";
 const mockData = [
   {
     id: 1,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2024-10-03").getTime(),
     emotionId: 1,
     content: "1 diary",
   },
   {
     id: 2,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2024-10-02").getTime(),
     emotionId: 2,
     content: "2 diary",
+  },
+  {
+    id: 3,
+    createdDate: new Date("2024-09-03").getTime(),
+    emotionId: 3,
+    content: "3 diary",
+  },
+  {
+    id: 4,
+    createdDate: new Date("2024-08-03").getTime(),
+    emotionId: 4,
+    content: "4 diary",
   },
 ];
 
@@ -36,8 +48,8 @@ function reducer(state, action) {
   return state;
 }
 
-const DiaryStateContext = createContext();
-const DiaryDispatchContext = createContext();
+export const DiaryStateContext = createContext();
+export const DiaryDispatchContext = createContext();
 
 function App() {
   const idRef = useRef(3);
