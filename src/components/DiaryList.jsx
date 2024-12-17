@@ -2,8 +2,10 @@ import Button from "./Button";
 import DiaryItem from "./DiaryItem";
 import "./DiaryList.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const DiaryList = ({ data }) => {
+  const nav = useNavigate();
   const [sortType, setSortType] = useState("latest");
 
   const onChangeSortType = (e) => {
@@ -28,7 +30,11 @@ const DiaryList = ({ data }) => {
           <option value={"latest"}>Newest</option>
           <option value={"oldest"}>Oldest</option>
         </select>
-        <Button text={"Add new diary"} type={"GOOD"} />
+        <Button
+          text={"Add new diary"}
+          type={"GOOD"}
+          onClick={() => nav("/add/diary")}
+        />
       </div>
       <div className="list_wrapper">
         {sortedData.map((item) => (
