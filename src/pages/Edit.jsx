@@ -8,7 +8,7 @@ import { DiaryDispatchContext, DiaryStateContext } from "../App";
 const Edit = () => {
   const params = useParams();
   const nav = useNavigate();
-  const { onDelete } = useContext(DiaryDispatchContext);
+  const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
   const [currentData, setCurrentData] = useState();
   const data = useContext(DiaryStateContext);
   useEffect(() => {
@@ -20,11 +20,23 @@ const Edit = () => {
       nav("/", { replace: true });
     }
     setCurrentData(targetData);
-  }, [params.id, data]);
+  }, [params.id]);
 
   const onClickDelete = () => {
     if (window.confirm("Do you want to delete it?")) {
       onDelete(params.id);
+      nav("/", { replace: true });
+    }
+  };
+
+  const onSubmit = (input) => {
+    if (window.confirm("Are you sure?")) {
+      onUpdate(
+        params.id,
+        input.createdDate.getTime(),
+        input.emotionId,
+        input.content
+      );
       nav("/", { replace: true });
     }
   };
@@ -38,7 +50,7 @@ const Edit = () => {
           <Button text={"delete"} type={"SOSO"} onClick={onClickDelete} />
         }
       />
-      <Editor currentData={currentData} />
+      <Editor onSubmit={onSubmit} currentData={currentData} />
     </div>
   );
 };
