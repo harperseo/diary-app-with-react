@@ -3,14 +3,7 @@ import EmotionItem from "./EmotionItem";
 import Button from "./Button";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-const emotionList = [
-  { emotionId: 1, emotionName: "so good" },
-  { emotionId: 2, emotionName: "good" },
-  { emotionId: 3, emotionName: "soso" },
-  { emotionId: 4, emotionName: "bad" },
-  { emotionId: 5, emotionName: "so bad" },
-];
+import { emotionList } from "../util/constants";
 
 const getStringedDate = (param) => {
   const targetDate = typeof param === "number" ? new Date(param) : param;
