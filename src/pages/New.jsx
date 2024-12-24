@@ -4,8 +4,10 @@ import Editor from "../components/Editor";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { DiaryDispatchContext } from "../App";
+import usePageTitle from "../hooks/usePageTitle";
 
 const New = () => {
+  usePageTitle(`New diary`);
   const nav = useNavigate();
   const { onCreate } = useContext(DiaryDispatchContext);
   const onSubmit = (input) => {
