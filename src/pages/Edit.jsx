@@ -2,25 +2,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import Editor from "../components/Editor";
-import { useContext, useEffect, useState } from "react";
-import { DiaryDispatchContext, DiaryStateContext } from "../App";
+import { useContext } from "react";
+import { DiaryDispatchContext } from "../App";
+import useDiary from "../hooks/useDiary";
 
 const Edit = () => {
   const params = useParams();
   const nav = useNavigate();
   const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
-  const [currentData, setCurrentData] = useState();
-  const data = useContext(DiaryStateContext);
-  useEffect(() => {
-    const targetData = data.find(
-      (item) => String(item.id) === String(params.id)
-    );
-    if (!targetData) {
-      window.alert("There's no diary");
-      nav("/", { replace: true });
-    }
-    setCurrentData(targetData);
-  }, [params.id]);
+  const currentData = useDiary(params.id);
 
   const onClickDelete = () => {
     if (window.confirm("Do you want to delete it?")) {
